@@ -1,1 +1,27 @@
-<p>table works!</p>
+<div class="container">
+  <div>
+    <input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)">
+     <mat-checkbox type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></mat-checkbox>
+    <button (click)="onDownload()">Download Selected</button>
+  </div>
+<table class="content-table">
+  <thead>
+    <th><!--checkbox column --></th>
+    <th>Name</th>
+    <th>Device</th>
+    <th>Path</th>
+    <th>Status</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of tableData; let i=index;"> 
+      <td> <mat-checkbox [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></mat-checkbox></td>
+      <!-- <td><input type="checkbox" value="{{item.isChecked}}" [(ngModel)]="item[i].checked"></td> -->
+      <td>{{item.name}}</td>
+      <td>{{item.device}}</td>
+      <td>{{item.path}}</td>
+      <td>{{item.status}}</td>      
+      <td>{{item.isChecked}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

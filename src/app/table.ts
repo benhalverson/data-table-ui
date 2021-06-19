@@ -3,4 +3,5 @@ export interface Table {
   device: string;
   path: string;
   status: string;
+  isChecked: boolean;
 }
