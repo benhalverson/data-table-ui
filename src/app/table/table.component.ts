@@ -13,6 +13,13 @@ export class TableComponent implements OnInit {
   checked = false;
   allChecked = false;
 
+  /** returns an array of names selected */
+  private status(): string[] {
+    return this.tableData
+      .filter((data) => data.status.includes('available'))
+      .map((data) => data.name);
+  }
+
   ngOnInit(): void {
     this.tableData = this.dataService.inMemoryData();
   }
@@ -20,13 +27,6 @@ export class TableComponent implements OnInit {
   /** Displays message with list of downloade file names. */
   onDownload(): void {
     alert(`downloading files(s): ${this.status()}`);
-  }
-
-  /** returns an array of names selected */
-  private status(): string[] {
-    return this.tableData
-      .filter((data) => data.status.includes('available'))
-      .map((data) => data.name);
   }
 
   /**
