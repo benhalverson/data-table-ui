@@ -5,7 +5,7 @@ import { Table } from './table';
   providedIn: 'root',
 })
 export class DataService {
-  constructor() {}
+  /** Usually this would be an http request that returns a promise or observable. */
   inMemoryData() {
     const data: Table[] = [
       {
