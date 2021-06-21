@@ -11,44 +11,62 @@ export class TableComponent implements OnInit {
   constructor(private readonly dataService: DataService) {}
   tableData: Table[] = [];
   checked = false;
-  allchecked = false;
-  indeterminate = false;
+  allChecked = false;
 
   ngOnInit(): void {
     this.tableData = this.dataService.inMemoryData();
   }
 
-  onDownload() {
+  /** Displays message with list of downloade file names. */
+  onDownload(): void {
     alert(`downloading files(s): ${this.status()}`);
   }
 
+  /** returns an array of names selected */
   private status(): string[] {
     return this.tableData
       .filter((data) => data.status.includes('available'))
       .map((data) => data.name);
   }
 
+  /**
+   * @param checked setting to true sets all other checkboxes to true
+   */
   setAll(checked: boolean) {
-    this.allchecked = checked;
+    this.allChecked = checked;
     this.tableData.forEach((data) => (data.isChecked = checked));
   }
 
-  someChecked() {
+  /**
+   * returns a truthy value that sets the indeterminate value of the select all checkbox
+   * @returns boolean
+   */
+  someChecked(): boolean {
     return (
       this.tableData.filter((data) => {
         if (data.isChecked) {
           data.status = 'available';
+          return true;
         } else {
           data.status = 'scheduled';
+          return false;
         }
-      }).length > 0 && !this.allchecked
+      }).length > 0 && !this.allChecked
     );
   }
 
-  updateAllChecked() {
-    this.allchecked = this.tableData.every((data) => data.isChecked);
+  /**
+   * Sets the state for isChecked
+   * @returns boolean
+   */
+  updateAllChecked(): boolean {
+    return (this.allChecked = this.tableData.every((data) => data.isChecked));
   }
 
+  /**
+   * Counts the number of selected rows
+   * @returns number
+   */
   countChecked(): number {
     return this.tableData.filter((data) => data.isChecked).length;
   }
