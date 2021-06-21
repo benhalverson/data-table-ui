@@ -11,6 +11,7 @@ export class TableComponent implements OnInit {
   constructor(private readonly dataService: DataService) {}
   tableData: Table[] = [];
   checked = false;
+  allchecked = false;
   indeterminate = false;
 
   ngOnInit(): void {
@@ -18,19 +19,40 @@ export class TableComponent implements OnInit {
   }
 
   onDownload() {
-    alert('downloading file(s)');
+    alert(`downloading files(s): ${this.status()}`);
   }
 
-  onSelect() {
-    console.log('selecting a row...');
+  private status(): string[] {
+    return this.tableData
+      .filter((data) => data.status.includes('available'))
+      .map((data) => data.name);
   }
 
-  checkAllCheckBox(e) {
-    this.tableData.forEach((x) => (x.isChecked = e.target.checked));
-    console.log('checked', e.target.checked);
+  setAll(checked: boolean) {
+    this.allchecked = checked;
+    this.tableData.forEach((data) => (data.isChecked = checked));
   }
 
-  isAllCheckBoxChecked() {
-    return this.tableData.every((p) => p.isChecked);
+  someChecked() {
+    const somechecked =
+      this.tableData.filter((data) => {
+        if (data.isChecked) {
+          data.status = 'available';
+        } else {
+          data.status = 'scheduled';
+        }
+      }).length > 0 && !this.allchecked;
+    console.log('some', somechecked);
+    debugger;
+    return somechecked;
+  }
+
+  updateAllChecked() {
+    this.allchecked = this.tableData.every((data) => data.isChecked);
+    // this.status();
+  }
+
+  countChecked(): number {
+    return this.tableData.filter((data) => data.isChecked).length;
   }
 }
