@@ -34,17 +34,15 @@ export class TableComponent implements OnInit {
   }
 
   someChecked() {
-    const somechecked =
+    return (
       this.tableData.filter((data) => {
         if (data.isChecked) {
           data.status = 'available';
         } else {
           data.status = 'scheduled';
         }
-      }).length > 0 && !this.allchecked;
-    console.log('some', somechecked);
-    debugger;
-    return somechecked;
+      }).length > 0 && !this.allchecked
+    );
   }
 
   updateAllChecked() {
