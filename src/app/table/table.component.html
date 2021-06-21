@@ -9,6 +9,9 @@
     <span *ngIf="countChecked() > 0">
        Selected {{countChecked()}}
     </span>
+        <span *ngIf="countChecked() === 0">
+       None Selected
+    </span>
     
     <button (click)="onDownload()">
       <span class="material-icons"> download </span> Download Selected

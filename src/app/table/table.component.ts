@@ -13,11 +13,16 @@ export class TableComponent implements OnInit {
   checked = false;
   allChecked = false;
 
-  /** returns an array of names selected */
-  private status(): string[] {
+  /** returns a new array of objects with the path and device selected */
+  private status() {
     return this.tableData
       .filter((data) => data.status.includes('available'))
-      .map((data) => data.name);
+      .map((data) => {
+        return {
+          path: data.path,
+          device: data.device,
+        };
+      });
   }
 
   ngOnInit(): void {
@@ -26,7 +31,7 @@ export class TableComponent implements OnInit {
 
   /** Displays message with list of downloade file names. */
   onDownload(): void {
-    alert(`downloading files(s): ${this.status()}`);
+    alert(`downloading files(s): ${JSON.stringify(this.status(), null, 2)}`);
   }
 
   /**
