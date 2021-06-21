@@ -47,7 +47,6 @@ export class TableComponent implements OnInit {
 
   updateAllChecked() {
     this.allchecked = this.tableData.every((data) => data.isChecked);
-    // this.status();
   }
 
   countChecked(): number {
