@@ -9,8 +9,8 @@
 
   thead {
     tr {
-      background-color: #009879;
-      color: #ffffff;
+      // background-color: #009879;
+      // color: #ffffff;
       font-weight: bold;
       text-align: left;
     }
@@ -18,9 +18,8 @@
 
   tbody {
     tr {
-      border-bottom: 1px solid #dddddd;
       &.active-row {
-        color: #009879;
+        background-color: #ccc;
         font-weight: bold;
       }
     }
@@ -48,22 +47,20 @@
   background-color: #ccc;
 }
 
-// .circle {
-//   border-radius: 50%;
-//   width: 10px;
-//   height: 10px;
-//   /* color: red; */
-//   background-color: red;
-// }
 .download-bar {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: left;
 }
+
 .download-btn {
   background-color: #fff;
   border: 1px solid #fff;
   display: flex;
   align-items: center;
+}
+
+.checkbox {
+  border: 1px solid #000;
 }

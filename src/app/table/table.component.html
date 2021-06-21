@@ -2,6 +2,7 @@
   
   <div class="download-bar">
     <mat-checkbox
+      class="checkbox"
       [checked]="allChecked"
       [indeterminate]="someChecked()"
       (change)="setAll($event.checked)"
@@ -26,9 +27,10 @@
       <th>Status</th>
     </thead>
     <tbody>
-      <tr *ngFor="let item of tableData; let i = index" [ngClass]="item.isChecked ? 'active-row circle': 'row'">
+      <tr *ngFor="let item of tableData; let i = index" [ngClass]="item.isChecked ? 'active-row': 'row'">
         <td>
           <mat-checkbox
+            class="checkbox"
             [(ngModel)]="item.isChecked"
             (ngModelChange)="updateAllChecked()"
           ></mat-checkbox>
