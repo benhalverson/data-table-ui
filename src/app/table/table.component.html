@@ -6,14 +6,14 @@
       [indeterminate]="someChecked()"
       (change)="setAll($event.checked)"
     ></mat-checkbox>
-    <span *ngIf="countChecked() > 0">
+    <span *ngIf="countChecked() > 0" class="selected-rows">
        Selected {{countChecked()}}
     </span>
-        <span *ngIf="countChecked() === 0">
+        <span *ngIf="countChecked() === 0" class="selected-rows">
        None Selected
     </span>
     
-    <button (click)="onDownload()">
+    <button (click)="onDownload()" class="download-btn">
       <span class="material-icons"> download </span> Download Selected
     </button>
   </div>
@@ -26,7 +26,7 @@
       <th>Status</th>
     </thead>
     <tbody>
-      <tr *ngFor="let item of tableData; let i = index">
+      <tr *ngFor="let item of tableData; let i = index" [ngClass]="item.isChecked ? 'active-row circle': 'row'">
         <td>
           <mat-checkbox
             [(ngModel)]="item.isChecked"

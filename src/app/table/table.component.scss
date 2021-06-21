@@ -31,10 +31,39 @@
 .content-table td {
   padding: 12px 15px;
 }
-
  
 .container {
   display: grid;
   height: 100vh;
   place-content: center;
+}
+
+.selected-rows {
+  padding-left: 1rem;
+  padding-right: 3rem;
+  font-size: 1rem;
+}
+
+.row:hover {
+  background-color: #ccc;
+}
+
+// .circle {
+//   border-radius: 50%;
+//   width: 10px;
+//   height: 10px;
+//   /* color: red; */
+//   background-color: red;
+// }
+.download-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+.download-btn {
+  background-color: #fff;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
 }
